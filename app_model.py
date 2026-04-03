@@ -7,12 +7,14 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error, mean_absolute_percentage_error
 import numpy as np
 
-os.chdir(os.path.dirname(__file__))
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+os.chdir(BASE_DIR)
 
 app = Flask(__name__)
 
 # Carga el modelo
-with open('ad_model.pkl','rb') as f:
+with open(os.path.join(BASE_DIR, 'ad_model.pkl'), 'rb') as f:
     model = pickle.load(f)
 # Enruta la landing page (endpoint /)
 @app.route("/", methods=["GET"])
